@@ -9,6 +9,8 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import WorkIcon from '@mui/icons-material/Work';
 import EventIcon from '@mui/icons-material/Event';
 import SchoolIcon from '@mui/icons-material/School';
+import { Users } from '../../dummyData';
+import CloseFriend from '../closefriend/CloseFriend';
 const Sidebar = () => {
   return (
     <div className='sidebar'>
@@ -54,34 +56,9 @@ const Sidebar = () => {
         <button className="sidebarButton">Show More</button>
         <hr className='sidebarHr'/>
         <ul className="sidebarFriendList">
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
-          <li className="sidebarFriends">
-            <img src="https://i0.wp.com/mistyaquavenatus.com/wp-content/uploads/2015/08/jaime_lannister_hbo_portrait.jpg?fit=600%2C600&ssl=1" alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Xrin Tin</span>
-          </li>
+          {Users.map(u=>(
+            <CloseFriend key={u.id} id={u.id} profilePicture={u.profilePicture} username={u.username} />
+          ))}
         </ul>
       </div>
     </div>
