@@ -4,7 +4,7 @@ import CakeIcon from '@mui/icons-material/Cake';
 import { Users } from '../../dummyData';
 import Online from '../online/Online';
 const Rightbar = ({profile}:any) => {
-  const homeRightbar = () =>{
+  const HomeRightbar = () =>{
     return(
       <>
         <div className="birthdayContainer">
@@ -76,8 +76,7 @@ const Rightbar = ({profile}:any) => {
   return (
     <div className='rightbar'>
       <div className="rightbarWrapper">
-       
-        <ProRight/>
+        {profile ? <ProRight/> : <HomeRightbar/>}
       </div>
     </div>
   )
