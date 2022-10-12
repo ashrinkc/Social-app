@@ -1,5 +1,5 @@
 import express from 'express'
-import { createPost, deletePost, getPost, likePost, timelinePost, updatePost } from '../controllers/post'
+import { createPost, deletePost, getPost, likePost, profilePost, timelinePost, updatePost } from '../controllers/post'
 const routes = express.Router()
 
 //create a post
@@ -13,5 +13,7 @@ routes.put("/:id/like",likePost)
 //get a post
 routes.get('/:id',getPost)
 //get timeline post 
-routes.get('/timeline/all',timelinePost)
+routes.get('/timeline/:userId',timelinePost)
+// get users all post
+routes.get('/profile/:username',profilePost)
 export default routes

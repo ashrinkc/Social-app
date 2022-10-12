@@ -10,7 +10,7 @@ routes.put('/:id',updateUser)
 routes.delete('/:id',deleteUser)
 
 // get a user
-routes.get('/:id',getUser)
+routes.get('/',getUser)
 
 //follow a user
 routes.get('/:id/follow')

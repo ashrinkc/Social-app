@@ -1,10 +1,27 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './profile.css'
 import Feed from '../../components/feed/Feed'
 import Rightbar from '../../components/rightbar/Rightbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Topbar from '../../components/topbar/Topbar'
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 const Profile = () => {
+  
+  type UserI = {
+    username?:string,
+    desc?:string
+  }
+  const [user,setUser] = useState<UserI>({})
+  const params = useParams()
+   useEffect(()=>{
+    const fetchUser = async() =>{
+     const res = await axios.get(`http://localhost:5000/api/users?username=${params.username}`)
+     setUser(res.data)
+     
+    }
+    fetchUser()
+  },[])
   return (
     <div>
          <Topbar/>
@@ -17,13 +34,13 @@ const Profile = () => {
                 <img src="https://hips.hearstapps.com/esquireuk.cdnds.net/15/37/2048x2730/2048x2730-walter-white-rumour-bryan-cranston-43-jpg-21006810.jpg?resize=480:*" alt="" className="profileUserImg" />
                 </div>
                 <div className="profileInfo">
-                    <h4 className='profileInfoName'>Ashrin K.C</h4>
-                    <span className="profileInfoDesc">Hey there!!!</span>
+                    <h4 className='profileInfoName'>{user.username}</h4>
+                    <span className="profileInfoDesc">{user.desc}</span>
                 </div>
             </div>
             <div className="profileRightBottom">
-                  <Feed/>
-          <Rightbar profile/>
+                  <Feed username={params.username}/>
+          <Rightbar user={user} />
             </div>
           </div>
         

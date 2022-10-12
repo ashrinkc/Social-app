@@ -32,8 +32,10 @@ export const deleteUser = async(req:Request,res:Response) =>{
 }
 
 export const getUser = async(req:Request,res:Response) =>{
+    const userId = req.query.userId;
+    const username = req.query.username;
     try{
-        const user = User.findById(req.params.id)
+        const user = userId ? await User.findById(userId) : await User.findOne({username:username})
         res.status(200).json(user)
     }catch(err:any){
         res.status(500).json(err)

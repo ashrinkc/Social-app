@@ -3,7 +3,7 @@ import './rightbar.css'
 import CakeIcon from '@mui/icons-material/Cake';
 import { Users } from '../../dummyData';
 import Online from '../online/Online';
-const Rightbar = ({profile}:any) => {
+const Rightbar = ({user}:any) => {
   const HomeRightbar = () =>{
     return(
       <>
@@ -31,11 +31,11 @@ const Rightbar = ({profile}:any) => {
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">City:</span>
-          <span className="rightbarInfoValue">Kathmandu</span>
+          <span className="rightbarInfoValue">{user.city}</span>
         </div>
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">From:</span>
-          <span className="rightbarInfoValue">Nepal</span>
+          <span className="rightbarInfoValue">{user.from}</span>
         </div>
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">Relationship:</span>
@@ -76,7 +76,7 @@ const Rightbar = ({profile}:any) => {
   return (
     <div className='rightbar'>
       <div className="rightbarWrapper">
-        {profile ? <ProRight/> : <HomeRightbar/>}
+        {user ? <ProRight/> : <HomeRightbar/>}
       </div>
     </div>
   )

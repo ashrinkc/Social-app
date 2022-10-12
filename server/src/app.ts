@@ -14,8 +14,8 @@ dotenv.config()
 //middleware
 app.use(express.json())
 app.use(cors())
-app.use(morgan("common"))
-app.use(helmet())
+// app.use(morgan("common"))
+// app.use(helmet())
 
 //routes
 app.use('/api/users',userRoutes)
