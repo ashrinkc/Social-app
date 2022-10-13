@@ -4,22 +4,23 @@ import Share from '../share/Share'
 import './feed.css'
 import { Posts } from '../../dummyData'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 interface FeedI{
   username?:string
 }
 const Feed = ({username}:FeedI) => {
   const [posts,setPosts] = useState<object[]>([])
-
+  const user = useSelector((state:any)=>state.user.user)
   useEffect(()=>{
     const fetchPosts = async() =>{
      const res = username
       ? await axios.get(`http://localhost:5000/api/posts/profile/${username}`) 
-     : await axios.get("http://localhost:5000/api/posts/timeline/634664556db11003a9ef46e1")
+     : await axios.get(`http://localhost:5000/api/posts/timeline/${user._id}`)
      setPosts(res.data)
     }
     fetchPosts()
-  },[username])
+  },[username,user._id])
   return (
     <div className='feed'>
       <div className="feedWrapper">

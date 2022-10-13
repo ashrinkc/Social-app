@@ -7,13 +7,14 @@ import { Users } from '../../dummyData';
 import axios from 'axios'
 import {format} from'timeago.js'
 import {useNavigate} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 interface propI{
     id:number,
     desc:string | undefined,
     photo:string,
     date:string,
     userId:number,
-    like:number,
+    like:any,
     comment:number
 }
 
@@ -25,19 +26,27 @@ const Post = ({id,desc,photo,date,userId,like,comment}:propI) => {
         profilePicture?: string,
         username?: string,
     }
+    const userr = useSelector((state:any)=>state.user.user)
     const navigate = useNavigate()
     const [lik,setLik] = useState(like)
     const [isLiked,setisLiked] = useState(false)
     const [user,setUser] = useState<UserI>({})
     const likeHandler = () =>{
+        try{
+            axios.put(`http://localhost:5000/api/posts/${id}/like`,{userId:userr?._id})
+        }catch(err){
+
+        }
         setLik(isLiked ? lik - 1:lik+1)
         setisLiked(!isLiked)
 } 
+useEffect(()=>{
+    // setisLiked(like.includes(userr._id))
+},[like,userr._id])
  useEffect(()=>{
     const fetchUser = async() =>{
      const res = await axios.get(`http://localhost:5000/api/users?userId=${userId}`)
      setUser(res.data)
-     console.log(res)
     }
     fetchUser()
   },[userId])
@@ -49,7 +58,7 @@ const Post = ({id,desc,photo,date,userId,like,comment}:propI) => {
                     
                     <img onClick={()=>{
                         navigate(`/profile/${user?.username}`)
-                    }} src={user?.profilePicture || "https://assets.entrepreneur.com/content/3x2/2000/20190918135414-tommy-shelby-peaky-blinders.jpeg?crop=1:1"} alt="" className="postProfileImg" />
+                    }} src={user?.profilePicture ? user.profilePicture : "https://assets.entrepreneur.com/content/3x2/2000/20190918135414-tommy-shelby-peaky-blinders.jpeg?crop=1:1"} alt="" className="postProfileImg" />
                     <span className="postUsername">{user?.username}</span>
                     <span className="postDate">{format(date)}</span>
                 </div>

@@ -4,8 +4,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const Topbar = () => {
+    const user = useSelector((state:any)=>state.user.user)
+    const navigate = useNavigate()
   return (
     <div className='topbarContainer'>
         <div className="topbarLeft"> 
@@ -38,7 +41,7 @@ const Topbar = () => {
                     <span className="topbarIconBadge">1</span>
                 </div>
             </div>
-            <img src="https://images.hdqwalls.com/download/tyrion-lannister-and-daenerys-targaryen-game-of-thrones-4k-ry-640x960.jpg" alt="" className="topbarImg" />
+            <img onClick={()=>{navigate(`/profile/${user?.username}`)}} src={user?.profilePicture?user.profilePicture:"https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"} alt="" className="topbarImg" />
         </div>
     </div>
   )
